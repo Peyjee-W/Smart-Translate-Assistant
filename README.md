@@ -1,108 +1,93 @@
-**Smart Translation Assistant** is a desktop application based on OpenAI API, designed for translating text. Users can choose different translation directions and styles, and the program provides corresponding translation results. The application offers custom context menus with options like cut, copy, paste, select all, and displays keyboard shortcuts.
+# Smart-Translate-Assistant
 
-### Features
+## Project Overview
 
-*   Supports multiple translation directions: English to Chinese, Chinese to English, Chinese to Japanese, Japanese to Chinese.
+Smart-Translate-Assistant is a desktop application that provides translation functionalities, including English-to-Chinese, Chinese-to-English, and more. It supports various translation styles such as academic and colloquial expressions. The application uses a free API from the [free\_chatgpt\_api](https://github.com/popjane/free_chatgpt_api) project for text translation, and it saves translation records in text files, displaying results in a graphical user interface.
 
-*   Offers multiple translation styles: Academic, Natural Expression, Formal Tone, Informal Tone.
+## Features
 
-*   Custom context menus with common operations and keyboard shortcut hints.
+*   Supports multiple translation directions, including English-to-Chinese, Chinese-to-English, Chinese-to-Japanese, and Japanese-to-Chinese.
+*   Offers translation style options, including academic style, colloquial expressions, formal tone, and informal tone.
+*   Automatically saves each translation's source text and translated text into text files.
+*   Custom text editor supports cut, copy, paste, and select all functionalities.
+*   Displays the window at the center of the screen.
+*   The program icon is `Tr.ico`.
 
-*   Saves translation results to text files, grouped by date.
+## Installation
 
-
-### Project Structure
-
-```bash
-translation_app/
-│
-├── main.py                  # Entry file, starts the application
-
-├── translator_app.py        # Main window and application logic
-
-├── custom_text_edit.py      # Custom text editor components
-
-└── utils.py                 # Utility functions (API requests, file saving)
-
-```
-
-### Installation
-
-1.  Clone the project:
+1.  **Clone the Repository**:
     
     ```bash
-    git clone https://github.com/yourusername/translation_app.git
-
-    cd translation_app
+    git clone https://github.com/Peyjee-W/Smart-Translate-Assistant.git
+    cd Smart-Translate-Assistant
     ```
     
-2.  Install dependencies:
+2.  **Create a Virtual Environment and Install Dependencies**:
     
-    Ensure you have [Python 3.6+](https://www.python.org/downloads/) installed, then use the following command to install the required Python packages:
-
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    pip install -r requirements.txt
+    ```
     
-    ```复制代码
-
+3.  **Install PyQt5 and OpenAI Libraries**:
+    
+    ```bash
     pip install PyQt5 openai
-
     ```
     
-3.  Configure the API:
+4.  **Add API Key**:
     
-    *   You can obtain a free API interface from the [free\_chatgpt\_api](https://github.com/popjane/free_chatgpt_api) project.
-
-    *   Set the API endpoint and key in `utils.py` as `openai.api_key` and `openai.base_url
-`.
-
-### Usage
-
-1.  Run the application:
+    In the `api_utils.py` file, replace `openai.api_key` with your OpenAI API key.
     
-    Start the application by running the following command in the terminal:
-
+    ```python
+    import openai
     
-    ```css
+    # Configure API request base URL and headers
+    openai.base_url = "https://free.gpt.ge/v1/"
+    openai.default_headers = {"x-foo": "true"}
+    ```
+    *   `openai.base_url`: Sets the base URL for API requests. Here, `https://free.gpt.ge/v1/` is used, which is the URL for the free API obtained from the [free\_chatgpt\_api](https://github.com/popjane/free_chatgpt_api) project.
+    *   `openai.default_headers`: Configures default headers for API requests. Here, a custom header `{"x-foo": "true"}` is set. Adjust or remove this setting as needed.
+
+## Usage
+
+1.  **Start the Application**:
+    
+    ```bash
     python main.py
     ```
     
-2.  Application Interface:
+2.  **Interface Operations**:
     
-    *   **Translation Direction**: Select the direction for translation.
+    *   Select the desired translation direction from the "Select Translation Direction" dropdown.
+    *   Choose the translation style from the "Select Translation Style" dropdown.
+    *   Enter the text to be translated in the "Input Text" box.
+    *   Click the "Translate" button to view the translation result.
+    *   Translation records will be automatically saved in the `Translations` folder, named by date and time.
 
-    *   **Translation Style**: Choose the translation style.
+## File Structure
 
-    *   **Input Text**: Enter the text to be translated.
+*   `main.py`: Entry point of the application.
+*   `translator_app.py`: Main window and application logic.
+*   `custom_text_edit.py`: Custom text editor component.
+*   `api_utils.py`: Handles API requests.
+*   `file_utils.py`: Handles file operations.
 
-    *   **Translation Result**: View the translated result.
+## Contributing
 
-3.  Context Menu:
-    
-    *   Both input and output text boxes support custom context menus.
+Contributions are welcome in any form, including submitting issues, suggesting features, or providing code contributions. Please follow these steps before submitting code:
 
-    *   The input box supports cut, copy, paste, and select all operations.
+1.  Fork the repository.
+2.  Create a new branch (`git checkout -b feature-branch`).
+3.  Commit your changes (`git commit -am 'Add new feature'`).
+4.  Push to the branch (`git push origin feature-branch`).
+5.  Create a new Pull Request.
 
-    *   The output box only supports copy and select all operations.
+## License
 
+This project is licensed under the MPL License.
 
-### File Structure and Functionality
+## Contact
 
-
-*   `main.py`: Entry file to start the application.
-
-*   `translator_app.py`: Contains the `TranslatorApp` main window class, handling the user interface and application logic.
-
-*   `custom_text_edit.py`: Defines the custom text editor classes `InputTextEdit` and `OutputTextEdit`, handling context menu logic.
-
-*   `utils.py`: Contains functions for handling OpenAI API requests (`translate_text`) and file saving (`save_translation
-`).
-
-### Notes
-
-*   Ensure a stable internet connection for communication with the API.
-
-*   The `Tr.ico` file provided is used to set the application icon; place it in the same directory as the project root.
-
-
-### License
-
-This project is licensed under the MIT License. For more details, see the `LICENSE` file.
+If you have any questions or suggestions, please contact me at peyjee@outlook.com or [GitHub Issues](https://github.com/Peyjee-W/Smart-Translate-Assistant/issues).
